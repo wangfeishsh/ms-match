@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SpringBoot模版渲染</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+</head>
+<body>
+
+<div>
+    <form action="#" th:action="@{/match}" method="post">
+
+        <table th:align="center" th:height="300">
+            <tr>
+                <td th:colspan="3" th:align="center" th:height="150">
+                    <h2>**公司牵手活动</h2>
+                </td>
+            </tr>
+            <tr>
+                <td th:width="200" th:height="150">
+                    <table>
+                        <tr>
+                            <td><img th:width="120" th:height="140" alt="App Logo" th:src="@{*{member1.imgUrl}}"/></td>
+                        </tr>
+                        <tr>
+                            <td><p th:text="'工号：' + *{member1.uid}"/></td>
+                        </tr>
+                        <tr>
+                            <td><p th:text="'姓名：' + *{member1.name}"/></td>
+                        </tr>
+                    </table>
+
+                <td th:width="200" th:height="150">
+                    <table>
+                        <tr>
+                            <td><img th:width="80" th:height="80" alt="App Logo" th:src="@{img/link.png}"/></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </table>
+                </td>
+                <td th:width="200" th:height="150">
+                    <table>
+                        <tr>
+                            <td><img th:width="120" th:height="140" alt="App Logo" th:src="@{*{member2.imgUrl}}"/></td>
+                        </tr>
+                        <tr>
+                            <td><p th:text="'工号：' + *{member2.uid}"/></td>
+                        </tr>
+                        <tr>
+                            <td><p th:text="'姓名：' + *{member2.name}"/></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td th:colspan="3" th:align="center" th:height="150">
+                    <button type="submit" name="匹配">匹配</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<table border="0" th:align="center" th:width="400">
+    <tr>
+        <td>序号</td>
+        <td>工号</td>
+        <td>姓名</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td>工号</td>
+        <td>姓名</td>
+    </tr>
+    <tr th:each="memberEntry,memberStat:${member3}">
+        <td th:text="${memberStat.index + 1}"/>
+        <td th:text="${memberEntry.key.uid}"/>
+        <td th:text="${memberEntry.key.name}"/>
+        <td>&&</td>
+        <td th:text="${memberEntry.value.uid}"/>
+        <td th:text="${memberEntry.value.name}"/>
+    </tr>
+</table>
+</body>
+</html>
